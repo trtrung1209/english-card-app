@@ -24,24 +24,22 @@ class LandingPage extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: Container(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Text('English',
-                      style: AppStyles.h2.copyWith(
-                        color: AppColors.blackGrey,
-                        fontWeight: FontWeight.bold
-                    ),),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 8),
-                      child: Text('Quotes',
-                        textAlign: TextAlign.right,
-                        style: AppStyles.h4.copyWith(height: 0.5),),
-                    ),
-                  ],
-                ),
-                )),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text('English',
+                    style: AppStyles.h2.copyWith(
+                      color: AppColors.blackGrey,
+                      fontWeight: FontWeight.bold
+                  ),),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8),
+                    child: Text('Quotes',
+                      textAlign: TextAlign.right,
+                      style: AppStyles.h4.copyWith(height: 0.5),),
+                  ),
+                ],
+              )),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 72),
