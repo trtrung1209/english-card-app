@@ -63,7 +63,7 @@ flutter:
     - assets/images/2x/
     - assets/images/3x/
     - assets/fonts/
-    - assets/fonts/sen
+    - assets/fonts/sen/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
