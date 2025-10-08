@@ -37,23 +37,78 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: [
             Container(
-              height: size.height * 1/10,
+              height: size.height * 1 / 10,
               alignment: Alignment.centerLeft ,
               child: 
               Text(
-                '"It iss amazing how complete is the delusion that beauty is goodness."',
+                '"It is amazing how complete is the delusion that beauty is goodness."',
                 style: AppStyles.h5.copyWith(
                   fontSize: 12,
                   color: AppColors.textColor,
                 ),)),
             Container(
-              height: size.height * 2/3,
+              height: size.height * 2 / 3,
               child: PageView.builder(itemCount: 5, itemBuilder: (context, index){
                 return Container(
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
                     color: AppColors.primaryColor,
                     borderRadius: BorderRadius.all(Radius.circular(24))
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                    Container(
+                      alignment: Alignment.centerRight,
+                      child: Image.asset(AppAssets.heart, color: Colors.white)),
+                    RichText(
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.start,
+                      text: TextSpan(
+                        text: 'B',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontFamily: FontFamily.sen,
+                          fontSize: 89,
+                          fontWeight: FontWeight.bold,
+                          shadows: [
+                            BoxShadow(
+                              color: Colors.black38,
+                              offset: Offset(3, 6),
+                              blurRadius: 6
+                            )
+                          ]
+                        ),
+                        children: [
+                          TextSpan(
+                            text: 'eautiful',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: FontFamily.sen,
+                              fontSize: 56,
+                              fontWeight: FontWeight.bold,
+                              shadows: [
+                                BoxShadow(
+                                  color: Colors.black38,
+                                  offset: Offset(3, 6),
+                                  blurRadius: 6
+                                )
+                              ]
+                            ),
+                          )
+                        ]
+                      )),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 24),
+                      child: Text(
+                        '"Think of all the beauty still left around you and be happy"',
+                        style: AppStyles.h4.copyWith(
+                          letterSpacing: 1
+                        )
+                      ),
+                    )
+                    ], 
                   ),
                 );
               }),
