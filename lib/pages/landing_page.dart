@@ -1,3 +1,4 @@
+import 'package:english_card_app/pages/home_page.dart';
 import 'package:english_card_app/values/app_assets.dart';
 import 'package:english_card_app/values/app_colors.dart';
 import 'package:english_card_app/values/app_styles.dart';
@@ -44,7 +45,9 @@ class LandingPage extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 72),
                 child: RawMaterialButton(
-                  onPressed: (){},
+                  onPressed: (){
+                    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => HomePage()), (rout) => false);
+                  },
                   shape: CircleBorder(),
                   fillColor: AppColors.lightBlue,
                   child: Image.asset(AppAssets.rightChevron),
