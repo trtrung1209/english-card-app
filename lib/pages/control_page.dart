@@ -1,7 +1,9 @@
 import 'package:english_card_app/values/app_assets.dart';
 import 'package:english_card_app/values/app_colors.dart';
 import 'package:english_card_app/values/app_styles.dart';
+import 'package:english_card_app/values/share_keys.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ControlPage extends StatefulWidget {
   const ControlPage({super.key});
@@ -13,6 +15,21 @@ class ControlPage extends StatefulWidget {
 class _ControlPageState extends State<ControlPage> {
 
   double sliderValue = 5;
+  late SharedPreferences prefs;
+
+  @override
+  void initState() {
+    super.initState();
+    initDefaultValue();
+  }
+
+  initDefaultValue() async {
+    prefs = await SharedPreferences.getInstance();
+    int value = prefs.getInt(ShareKeys.counter) ?? 5;
+    setState(() {
+      sliderValue = value.toDouble();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +46,8 @@ class _ControlPageState extends State<ControlPage> {
           ),
         ),
         leading: InkWell(
-          onTap: () {
+          onTap: () async {
+            await prefs.setInt(ShareKeys.counter, sliderValue.toInt());
             Navigator.pop(context);
           },
           child: Image.asset(AppAssets.leftChevron),
