@@ -1,10 +1,12 @@
+import 'package:english_card_app/packages/quote.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import './pages/landing_page.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
+  await Quotes().getAll();
+
   runApp(const MyApp());
 }
 
@@ -13,8 +15,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []); 
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
       home: LandingPage(),
     );
   }
