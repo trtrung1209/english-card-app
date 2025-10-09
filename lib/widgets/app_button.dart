@@ -13,7 +13,7 @@ class AppButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        onTap;
+        onTap();
       },
       child: Container(
         width: double.infinity,
