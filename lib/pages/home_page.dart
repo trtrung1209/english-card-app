@@ -11,6 +11,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int _currentIndex = 0;
+  PageController _pageController = PageController();
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -48,7 +51,16 @@ class _HomePageState extends State<HomePage> {
                 ),)),
             Container(
               height: size.height * 2 / 3,
-              child: PageView.builder(itemCount: 5, itemBuilder: (context, index){
+              child: PageView.builder(
+                controller: _pageController,
+                onPageChanged: (index) {
+                  setState(() {
+                    _currentIndex = index;
+                  });
+                },
+                itemCount: 5, 
+                itemBuilder: (context, index){
+
                 return Container(
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
@@ -112,10 +124,26 @@ class _HomePageState extends State<HomePage> {
                   ),
                 );
               }),
-            )
+            ),
+
+          // indicator
+          SizedBox(
+            height: size.height * 1 / 12,
+            child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 24),
+              alignment: Alignment.center,
+              child: ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
+                scrollDirection: Axis.horizontal,
+                itemCount: 5,
+                itemBuilder: (context, index){
+                  return buildIndicator(index == _currentIndex , size);
+                }),
+            ))
           ],
         ),
       ),
+
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColors.primaryColor,
         onPressed: (){
@@ -123,6 +151,22 @@ class _HomePageState extends State<HomePage> {
         },
         child: Image.asset(AppAssets.exchange),
         ),
+    );
+  }
+  Widget buildIndicator(bool isActive, Size size) {
+    return Container(
+      height: 8,
+      margin: const EdgeInsets.symmetric(horizontal: 16),
+      width: isActive ? size.width * 1/5 : 24,
+      decoration: BoxDecoration(
+        color: isActive ? AppColors.lightBlue : AppColors.lightGrey,
+        borderRadius: BorderRadius.all(Radius.circular(12)),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black38, offset: Offset(2, 3), blurRadius: 3
+          )
+        ]
+      ),
     );
   }
 }
